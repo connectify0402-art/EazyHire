@@ -8,7 +8,7 @@ import Benefits from './components/Benefits';
 //import Team from './components/Team';
 import Waitlist from './components/Waitlist';
 import Footer from './components/Footer';
-import ServiceMatchGame from './components/ServiceMatchGame';
+//import ServiceMatchGame from './components/ServiceMatchGame';
 //import FuturisticCountdown from './components/FuturisticCountdown';
 
 function App() {
@@ -176,7 +176,7 @@ function App() {
             <Benefits />
             {/*<FuturisticCountdown />*/}
             {/*<Team />*/}
-            <ServiceMatchGame />
+           {/*} <ServiceMatchGame /> */}
             <Waitlist />
             <Footer />
         </>
