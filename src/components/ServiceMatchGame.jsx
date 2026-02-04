@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 
 const ServiceMatchGame = () => {
     const [score, setScore] = useState(0);
@@ -17,7 +17,7 @@ const ServiceMatchGame = () => {
     const [gameHistory, setGameHistory] = useState([]);
 
     // Icons mapping for categories
-    const categoryIcons = {
+    const categoryIcons = useMemo(() => ({
         'Emergency': '⚡',
         'Fashion': '👗',
         'Home': '🏠',
@@ -32,10 +32,10 @@ const ServiceMatchGame = () => {
         'Health': '🏥',
         'Cleaning': '🧹',
         'Transport': '🚚'
-    };
+    }), []);
 
     // Nigerian service scenarios with more questions and proper icons
-    const scenarios = [
+    const scenarios = useMemo(() => [
         {
             id: 1,
             description: "Your 'I-better-pass-my-neighbour' stopped working during light outage. Call...",
@@ -236,7 +236,7 @@ const ServiceMatchGame = () => {
             difficulty: 2,
             icon: '🚿'
         }
-    ];
+    ], []);
 
     // Extra wrong answers pool
     const extraWrongAnswers = useCallback(() => [
@@ -482,11 +482,11 @@ const ServiceMatchGame = () => {
     }, [calculateAccuracy]);
 
     // Restart game
-    const restartGame = () => {
+    const restartGame = useCallback(() => {
         setShowStart(true);
         setGameOver(false);
         if (navigator.vibrate) navigator.vibrate(30);
-    };
+    }, []);
 
     return (
         <div style={{
