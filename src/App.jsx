@@ -8,6 +8,7 @@ import Benefits from './components/Benefits';
 //import Team from './components/Team';
 import Waitlist from './components/Waitlist';
 import Footer from './components/Footer';
+import ServiceMatchGame from './components/ServiceMatchGame';
 //import FuturisticCountdown from './components/FuturisticCountdown';
 
 function App() {
@@ -86,7 +87,7 @@ function App() {
             `;
             document.body.appendChild(container);
 
-            const bubbleCount = 0;
+            const bubbleCount = 5;
             
             for (let i = 0; i < bubbleCount; i++) {
                 const bubble = document.createElement('div');
@@ -175,6 +176,7 @@ function App() {
             <Benefits />
             {/*<FuturisticCountdown />*/}
             {/*<Team />*/}
+            <ServiceMatchGame />
             <Waitlist />
             <Footer />
         </>
