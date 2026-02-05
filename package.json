@@ -7,7 +7,7 @@
     "framer-motion": "^12.31.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1"
+    "react-scripts": "^5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -31,5 +31,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.6.2",
+    "babel-loader": "^10.0.0",
+    "html-webpack-plugin": "^5.6.6",
+    "webpack-dev-server": "^5.2.3"
   }
 }

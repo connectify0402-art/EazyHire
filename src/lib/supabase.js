@@ -1,29 +1,30 @@
-// src/lib/supabase.js
 import { createClient } from '@supabase/supabase-js'
-
-console.log('=== Environment Debug ===');
-console.log('NODE_ENV:', process.env.NODE_ENV);
-console.log('All REACT_APP_ vars:', Object.keys(process.env).filter(key => key.startsWith('REACT_APP_')));
 
 // Get environment variables
 const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
 const supabaseAnonKey = process.env.REACT_APP_SUPABASE_ANON_KEY;
 
-console.log('Supabase URL from env:', supabaseUrl ? 'Present' : 'Missing');
-console.log('Supabase Key from env:', supabaseAnonKey ? 'Present' : 'Missing');
+// Debug logging
+console.log('=== Supabase Debug ===');
+console.log('Environment:', process.env.NODE_ENV);
+console.log('REACT_APP_TEST_VAR:', process.env.REACT_APP_TEST_VAR || 'Not found');
+console.log('Supabase URL from .env:', supabaseUrl ? '✓ Loaded' : '✗ Missing');
+console.log('Supabase Key from .env:', supabaseAnonKey ? '✓ Loaded' : '✗ Missing');
 
-// Development fallback (for testing)
-const devUrl = 'https://glrbnjezljfyhanroxlw.supabase.co';
-const devKey = 'sb_publishable_MtY7U15I9YU2ORh1X87Msg_YBpLQctM';
+// Validate environment variables
+if (!supabaseUrl || !supabaseAnonKey) {
+  console.warn('⚠️ WARNING: Supabase environment variables not found');
+  console.warn('Make sure .env.local file exists in project root with:');
+  console.warn('REACT_APP_SUPABASE_URL=your_url');
+  console.warn('REACT_APP_SUPABASE_ANON_KEY=your_key');
+  
+  if (process.env.NODE_ENV === 'production') {
+    throw new Error('Missing Supabase environment variables in production');
+  }
+}
 
-// Use environment variables if available, otherwise use dev credentials
-const finalUrl = supabaseUrl || devUrl;
-const finalKey = supabaseAnonKey || devKey;
-
-console.log('Using Supabase URL:', finalUrl);
-
-// Create and export Supabase client
-const supabase = createClient(finalUrl, finalKey, {
+// Create Supabase client
+const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   auth: {
     autoRefreshToken: true,
     persistSession: true,
@@ -31,6 +32,7 @@ const supabase = createClient(finalUrl, finalKey, {
   }
 });
 
-console.log('✅ Supabase client initialized');
+console.log('✅ Supabase client created successfully');
+console.log('URL:', supabaseUrl ? supabaseUrl.substring(0, 30) + '...' : 'None');
 
 export { supabase };

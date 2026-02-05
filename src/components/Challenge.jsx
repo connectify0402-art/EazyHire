@@ -194,7 +194,7 @@ const Challenge = () => {
                 </div>
             </div>
 
-            <style jsx>{`
+            <style >{`
                 /* Animation Classes */
                 .animate-in {
                     opacity: 1 !important;

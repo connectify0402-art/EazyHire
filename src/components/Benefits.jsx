@@ -222,7 +222,7 @@ const Benefits = () => {
                 </div>
             </div>
 
-            <style jsx>{`
+            <style data-jsx="true">{`
                 /* Animation Classes */
                 .animate-in {
                     opacity: 1 !important;

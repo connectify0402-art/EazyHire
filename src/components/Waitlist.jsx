@@ -359,7 +359,7 @@ const Waitlist = () => {
                 </div>
             </div>
 
-            <style jsx="true">{`
+            <style data-jsx="true">{`
                 @keyframes slideIn {
                     from {
                         opacity: 0;
