@@ -273,7 +273,7 @@ const ServiceMatchGame = () => {
         
         // Shuffle and take 5 wrong answers (more options)
         const shuffled = shuffleArray(allWrongAnswers);
-        return shuffled.slice(0, 5);
+        return shuffled.slice(0, 3);
     }, [extraWrongAnswers, shuffleArray]);
 
     // Get next scenario - avoids repeats
@@ -306,7 +306,7 @@ const ServiceMatchGame = () => {
         // Get 5 wrong answers
         const wrongs = getRandomWrongAnswers(randomScenario);
         
-        // Combine and shuffle all answers (now total of 6 options)
+        // Combine and shuffle all answers (now total of  4options)
         const allAnswers = shuffleArray([randomScenario.correct, ...wrongs]);
         const correctIndex = allAnswers.indexOf(randomScenario.correct);
         
@@ -432,7 +432,7 @@ const ServiceMatchGame = () => {
         const handleKeyPress = (e) => {
             if (!gameActive || selectedAnswer !== null) return;
 
-            if (e.key >= '1' && e.key <= '6') {
+            if (e.key >= '1' && e.key <= '4') {
                 const index = parseInt(e.key) - 1;
                 if (currentScenario?.options[index]) {
                     handleAnswer(index);
@@ -489,6 +489,7 @@ const ServiceMatchGame = () => {
     }, []);
 
     return (
+        <section className="section servicematchgame" id="servicematchgame" >
         <div style={{
             width: '100%',
             maxWidth: '500px',
@@ -516,7 +517,7 @@ const ServiceMatchGame = () => {
                     fontWeight: '700',
                     letterSpacing: '0.5px'
                 }}>
-                    Service Match Challenge
+                    Play While You Wait
                 </h3>
                 <p style={{
                     margin: '4px 0 0',
@@ -647,7 +648,7 @@ const ServiceMatchGame = () => {
                         justifyContent: 'center',
                         gap: '8px'
                     }}>
-                        <span>Tap options or press 1-6 keys</span>
+                        <span>Tap options or press 1-4 keys</span>
                     </div>
                 </div>
             )}
@@ -1066,6 +1067,7 @@ const ServiceMatchGame = () => {
                 `}
             </style>
         </div>
+        </section>
     );
 };
 
