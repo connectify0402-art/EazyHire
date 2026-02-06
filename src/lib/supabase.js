@@ -33,6 +33,5 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey, {
 });
 
 console.log('✅ Supabase client created successfully');
-console.log('URL:', supabaseUrl ? supabaseUrl.substring(0, 30) + '...' : 'None');
 
 export { supabase };
