@@ -79,7 +79,7 @@ const Header = () => {
             document.removeEventListener('touchstart', handleClickOutside);
             document.body.style.overflow = '';
         };
-    }, [isMenuOpen]);
+    }, [isMenuOpen, isMobile]); // Added isMobile to dependencies
 
     const toggleMenu = () => {
         const newMenuState = !isMenuOpen;
@@ -346,8 +346,8 @@ const Header = () => {
     const navItems = [
         { label: 'Home', sectionId: 'home' },
         { label: 'Features', sectionId: 'features' },
-        { label: 'The Challenge', sectionId: 'challenge' },
         { label: 'Benefits', sectionId: 'benefits' },
+        { label: 'The Challenge', sectionId: 'challenge' },
         { label: 'Service Game', sectionId: 'servicematchgame' },
     ];
 
