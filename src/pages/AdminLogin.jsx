@@ -1,4 +1,3 @@
-// src/pages/AdminLogin.jsx
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthService } from '../lib/auth';
@@ -14,15 +13,6 @@ const AdminLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState(false);
   const navigate = useNavigate();
-
-  // Password strength requirements
-  const passwordRequirements = [
-    { id: 1, text: 'At least 8 characters', met: false },
-    { id: 2, text: 'Contains uppercase letter', met: false },
-    { id: 3, text: 'Contains lowercase letter', met: false },
-    { id: 4, text: 'Contains number', met: false },
-    { id: 5, text: 'Contains special character', met: false }
-  ];
 
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -49,10 +39,10 @@ const AdminLogin = () => {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
 
-    // Validate password in real-time
+    // Validate password in real-time (passwordChecks variable removed since it's not used)
     if (name === 'password') {
-      const passwordChecks = validatePassword(value);
-      // You could update password requirements UI here
+      // You can add password validation UI updates here if needed
+      validatePassword(value);
     }
   };
 
