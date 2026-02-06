@@ -5,7 +5,7 @@ export const AuthService = {
   // Register admin
   async registerAdmin(email, password, adminCode) {
     // Check admin registration code (store this in environment variables in production)
-    const validAdminCode = process.env.REACT_APP_ADMIN_REGISTRATION_CODE || 'EazyHireAdmin2024';
+    const validAdminCode = process.env.ADMIN_REGISTRATION_CODE || 'EazyHireAdmin2024';
     
     if (adminCode !== validAdminCode) {
       throw new Error('Invalid admin registration code');
