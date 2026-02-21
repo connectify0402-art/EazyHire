@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "EazyHire",
+  "name": "EazyHire Nigeria",
+  "description": "Hire trusted professionals in Nigeria",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +21,13 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#2563eb",
+  "background_color": "#ffffff",
+  "social": {
+    "twitter": "https://x.com/eazyhirenig",
+    "instagram": "https://instagram.com/eazyhirenig"
+  },
+  "categories": ["business", "services"],
+  "lang": "en-NG",
+  "dir": "ltr"
 }

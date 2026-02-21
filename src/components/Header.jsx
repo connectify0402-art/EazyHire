@@ -79,7 +79,7 @@ const Header = () => {
             document.removeEventListener('touchstart', handleClickOutside);
             document.body.style.overflow = '';
         };
-    }, [isMenuOpen, isMobile]); // Added isMobile to dependencies
+    }, [isMenuOpen, isMobile]);
 
     const toggleMenu = () => {
         const newMenuState = !isMenuOpen;
@@ -112,7 +112,7 @@ const Header = () => {
         setTimeout(() => {
             const element = document.getElementById(sectionId);
             if (element) {
-                const headerHeight = 80; // Height of your fixed header
+                const headerHeight = 80;
                 const elementPosition = element.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
                 
@@ -124,7 +124,6 @@ const Header = () => {
         }, isMobile ? 100 : 0);
     };
 
-    // Event handler utilities with null checks
     const handleNavLinkTouch = (e) => {
         if (isMobile && e.currentTarget) {
             e.currentTarget.style.backgroundColor = '#F5F5F5';
@@ -155,7 +154,7 @@ const Header = () => {
         }
     };
 
-    // Styles with actual values instead of CSS variables
+    // Styles
     const mobileToggleStyle = {
         display: isMobile ? 'flex' : 'none',
         alignItems: 'center',
@@ -215,7 +214,6 @@ const Header = () => {
         }),
     };
 
-    // Get nav link style for specific index
     const getNavLinkStyle = (index, total) => {
         const baseStyle = {
             background: 'transparent',
@@ -236,15 +234,13 @@ const Header = () => {
         };
 
         if (isMobile) {
-            const mobileStyle = {
+            return {
                 ...baseStyle,
                 fontSize: '16px',
                 borderBottom: index === total - 1 ? 'none' : '1px solid #F5F5F5',
                 margin: 0,
             };
-            return mobileStyle;
         }
-
         return baseStyle;
     };
 
@@ -301,22 +297,24 @@ const Header = () => {
         padding: 0,
         display: 'flex',
         alignItems: 'center',
-        gap: isMobile ? '6px' : '8px',
+        gap: isMobile ? '8px' : '12px',
         textDecoration: 'none',
         zIndex: 1001,
     };
 
-    const logoIconStyle = {
-        width: isMobile ? '36px' : '40px',
-        height: isMobile ? '36px' : '40px',
+    // UPDATED: New gradient logo style using CSS mask
+    const gradientLogoStyle = {
+        width: isMobile ? '40px' : '48px',
+        height: isMobile ? '40px' : '48px',
         background: 'linear-gradient(135deg, rgb(0, 146, 49), #11ACA9)',
-        borderRadius: '12px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        color: '#FFFFFF',
-        fontSize: isMobile ? '20px' : '24px',
-        transform: 'rotate(-5deg)',
+        maskImage: 'url(/logo192.png)',
+        maskSize: 'contain',
+        maskRepeat: 'no-repeat',
+        maskPosition: 'center',
+        WebkitMaskImage: 'url(/logo192.png)',
+        WebkitMaskSize: 'contain',
+        WebkitMaskRepeat: 'no-repeat',
+        WebkitMaskPosition: 'center',
         transition: 'transform 0.3s ease',
     };
 
@@ -332,6 +330,7 @@ const Header = () => {
         color: '#212121',
         letterSpacing: '-0.5px',
         fontSize: isMobile ? '20px' : '25px',
+        lineHeight: 1.2,
     };
 
     const logoSubStyle = {
@@ -342,7 +341,6 @@ const Header = () => {
         fontWeight: 600,
     };
 
-    // Navigation items with their section IDs
     const navItems = [
         { label: 'Home', sectionId: 'home' },
         { label: 'Features', sectionId: 'features' },
@@ -353,7 +351,6 @@ const Header = () => {
 
     return (
         <>
-            {/* Inject CSS variables as style tag */}
             <style>{`
                 :root {
                     --primary: ${cssVariables['--primary']};
@@ -395,11 +392,10 @@ const Header = () => {
                     box-shadow: ${cssVariables['--shadow-md']};
                 }
                 
-                .logo-icon:hover {
+                .gradient-logo:hover {
                     transform: rotate(5deg) scale(1.1);
                 }
                 
-                /* Mobile-specific styles */
                 @media (max-width: 768px) {
                     .mobile-nav-link {
                         -webkit-tap-highlight-color: rgba(0, 146, 49, 0.1);
@@ -415,7 +411,6 @@ const Header = () => {
                         transform: scale(0.98);
                     }
                     
-                    /* Remove border from last nav item on mobile */
                     .mobile-nav-link:last-child {
                         border-bottom: none !important;
                     }
@@ -430,9 +425,18 @@ const Header = () => {
                         style={logoStyle}
                         aria-label="Go to Home"
                     >
-                        <div className="logo-icon" style={logoIconStyle}>
-                            <i className="fas fa-handshake"></i>
-                        </div>
+                        {/* UPDATED: Gradient logo using CSS mask */}
+                        <div 
+                            className="gradient-logo"
+                            style={gradientLogoStyle}
+                            onError={(e) => {
+                                // Fallback if mask fails - show original image
+                                e.currentTarget.style.background = 'transparent';
+                                e.currentTarget.style.maskImage = 'none';
+                                e.currentTarget.style.WebkitMaskImage = 'none';
+                                e.currentTarget.innerHTML = `<img src="/logo192.png" style="width:100%;height:100%;object-fit:contain;" />`;
+                            }}
+                        />
                         <div style={logoTextStyle}>
                             <span style={logoPrimaryStyle}>EazyHire</span>
                             <span style={logoSubStyle}>Coming Soon</span>

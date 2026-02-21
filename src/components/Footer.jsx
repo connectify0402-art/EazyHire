@@ -16,12 +16,37 @@ const Footer = () => {
         window.open(urls[platform], '_blank', 'noopener,noreferrer');
     };
 
+    // Gradient logo style matching Header
+    const footerGradientLogoStyle = {
+        width: '32px',
+        height: '32px',
+        background: 'linear-gradient(135deg, rgb(0, 146, 49), #11ACA9)',
+        maskImage: 'url(/logo192.png)',
+        maskSize: 'contain',
+        maskRepeat: 'no-repeat',
+        maskPosition: 'center',
+        WebkitMaskImage: 'url(/logo192.png)',
+        WebkitMaskSize: 'contain',
+        WebkitMaskRepeat: 'no-repeat',
+        WebkitMaskPosition: 'center',
+        transition: 'transform 0.3s ease',
+    };
+
     return (
         <footer className="footer" style={{
             background: 'var(--gray-900)',
             color: 'var(--white)',
             padding: 'var(--space-3xl) 0 var(--space-xl)',
         }}>
+            <style>{`
+                .footer-logo:hover .footer-gradient-logo {
+                    transform: rotate(5deg) scale(1.1);
+                }
+                .social-link:hover {
+                    background: var(--gradient-primary) !important;
+                    transform: translateY(-2px);
+                }
+            `}</style>
             <div className="container">
                 <div className="footer-content" data-scroll style={{
                     display: 'flex',
@@ -45,19 +70,11 @@ const Footer = () => {
                             textDecoration: 'none',
                         }}
                     >
-                        <div className="footer-logo-icon" style={{
-                            width: '32px',
-                            height: '32px',
-                            background: 'var(--gradient-primary)',
-                            borderRadius: 'var(--radius-md)',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            color: 'var(--white)',
-                            fontSize: '16px',
-                        }}>
-                            <i className="fas fa-handshake"></i>
-                        </div>
+                        {/* UPDATED: Gradient logo using CSS mask to match Header */}
+                        <div 
+                            className="footer-gradient-logo"
+                            style={footerGradientLogoStyle}
+                        />
                         <span className="footer-logo-text" style={{
                             fontFamily: 'var(--font-heading)',
                             fontSize: '20px',
